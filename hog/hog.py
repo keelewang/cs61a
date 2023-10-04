@@ -5,6 +5,7 @@ from ucb import main, trace, interact
 
 GOAL = 100  # The goal of Hog is to score 100 points.
 
+
 ######################
 # Phase 1: Simulator #
 ######################
@@ -22,6 +23,14 @@ def roll_dice(num_rolls, dice=six_sided):
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
+    last, cur, sow_sad = 0, 0, False
+    while num_rolls > 0:
+        cur += dice()
+        if cur - last == 1:
+            sow_sad = True
+        num_rolls -= 1
+        last = cur
+    return 1 if sow_sad else cur
     # END PROBLEM 1
 
 
@@ -62,6 +71,7 @@ def simple_update(num_rolls, player_score, opponent_score, dice=six_sided):
     score = player_score + take_turn(num_rolls, player_score, opponent_score, dice)
     return score
 
+
 def is_prime(n):
     """Return whether N is prime."""
     if n == 1:
@@ -73,17 +83,20 @@ def is_prime(n):
         k += 1
     return True
 
+
 def num_factors(n):
     """Return the number of factors of N, including 1 and N itself."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
     # END PROBLEM 4
 
+
 def sus_points(score):
     """Return the new score of a player taking into account the Sus Fuss rule."""
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
     # END PROBLEM 4
+
 
 def sus_update(num_rolls, player_score, opponent_score, dice=six_sided):
     """Return the total score of a player who starts their turn with
@@ -243,7 +256,7 @@ def run_experiments():
     six_sided_max = max_scoring_num_rolls(six_sided)
     print('Max scoring num rolls for six-sided dice:', six_sided_max)
 
-    print('always_roll(6) win rate:', average_win_rate(always_roll(6))) # near 0.5
+    print('always_roll(6) win rate:', average_win_rate(always_roll(6)))  # near 0.5
     print('catch_up win rate:', average_win_rate(catch_up))
     print('always_roll(3) win rate:', average_win_rate(always_roll(3)))
     print('always_roll(8) win rate:', average_win_rate(always_roll(8)))
@@ -252,7 +265,6 @@ def run_experiments():
     print('sus_strategy win rate:', average_win_rate(sus_strategy))
     print('final_strategy win rate:', average_win_rate(final_strategy))
     "*** You may add additional experiments as you wish ***"
-
 
 
 def boar_strategy(score, opponent_score, threshold=11, num_rolls=6):
