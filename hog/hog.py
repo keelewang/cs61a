@@ -257,6 +257,7 @@ def make_averaged(original_function, samples_count=1000):
     """
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+
     def f(*args):
         total = 0
         for _ in range(samples_count):
@@ -278,7 +279,16 @@ def max_scoring_num_rolls(dice=six_sided, samples_count=1000):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
-    # END PROBLEM 9
+    ret, max_score = 1, 0
+    for i in range(1, 11):
+        averaged_dice = make_averaged(roll_dice, samples_count)
+        score = averaged_dice(i, dice)
+        if score > max_score:
+            ret, max_score = i, score
+    return ret
+
+
+# END PROBLEM 9
 
 
 def winner(strategy0, strategy1):
