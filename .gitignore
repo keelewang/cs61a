@@ -3,3 +3,4 @@ tests
 .ok*
 *.ok
 ok
+test.py
