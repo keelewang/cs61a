@@ -4,3 +4,4 @@ tests
 *.ok
 ok
 test.py
+construct_check.py
